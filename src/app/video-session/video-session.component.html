@@ -1,0 +1,73 @@
+<app-menubar mostrarResumo="true" [rating]="rating" [tags]="totalTags" [menuTitle]="menuTitle"></app-menubar>
+<div style="overflow: hidden;">
+  <div class="container-fluid">
+
+    <div class="row" style="height:50%;">
+      <video controls (timeupdate)="onTimeUpdate()" id="videoElement" class="col-12"
+             style="width: 100%;background-color: black;max-height: 50vh;/*object-fit: cover;*/"
+             #videoElement (ended)="onEnded()" [src]="videoSrc" [autoplay]="autoplay" (loadeddata)="onLoaded()"></video>
+
+    </div>
+
+    <div class="row" style="height:5%;">
+      <div *ngFor="let tab of tabs" class="col ktab" [ngClass]="{'selected':tab.selected}"
+           (click)="onSelectTab(tab.tabname)">
+        {{tab.description}}
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('info')}">
+    <div class="row">
+      <div class="col-12 info-title">Rating</div>
+
+      <div class="col-12 rating-container">
+        <span class="rating-item fas fa-star" (click)="onChangeStar(star.rating)" [ngClass]="{'selected':star.selected}"
+              *ngFor="let star of starsSelected"></span>
+      </div>
+    </div>
+
+    <div class="row info">
+      <div class="col-12  info-title">Imagem</div>
+      <div class="col-12">
+        <div (click)="recreate(videoDetails.code)" style="width: 100px;height: 100px;border: 1px solid #ddd">
+          <img style="width: 200px;height: 100px;" [src]="imageUrl" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row info" *ngFor="let info of infoListItem">
+      <div class="col-12 info-title">{{info.description}}</div>
+      <div class="col-12 info-value"><span *ngIf="!info.value">-</span><span *ngIf="info.value">{{info.value}}</span>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('tags')}">
+    <div class="row">
+      <div class="col-12 tag-list-item" *ngFor="let tag of videoTags" (click)="onSelectTag(tag)"
+           [ngClass]="{'selected':tag.selected}">
+        <div class="col-8">{{tag.tag}}</div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('fila')}">
+    <ul class="nobullet fila"
+        *ngFor="let video of lastVideos" (click)="play(video.idVideo+'')"
+        [routerLink]="['/play/id/',video.idVideo]">
+      <li [ngClass]="{'selected':isSelected(video.idVideo)}">{{video.idVideo}} - {{video.title}}</li>
+    </ul>
+  </div>
+  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('config')}">
+    <div class="row">
+      <div class="col-12 tag-list-item" *ngFor="let playlist of playLista" (click)="onSelectPlaylist(playlist)">
+        <div class="col-8">{{playlist.name}}</div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

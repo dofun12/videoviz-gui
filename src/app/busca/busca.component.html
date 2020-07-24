@@ -1,0 +1,53 @@
+<app-menubar></app-menubar>
+<div class="container-fluid" style="overflow: auto;height: 95vh;">
+  <div class="row form-group">
+    <div class="col-4">
+      Tag:
+      <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
+    </div>
+    <div class="col-4 align-items-center">
+      <div class="btn btn-info" (click)="includeTag()">Include Tag</div>
+      <div class="btn btn-info" (click)="excludeTag()">Exclude Tag</div>
+    </div>
+    <div class="col-12">
+      <div class="btn btn-info" (click)="clear()">Clear</div>
+      <div class="btn btn-info" (click)="onBuscar()">Buscar</div>
+
+    </div>
+  </div>
+  <div class="row">
+
+
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3>Incluidas</h3>
+      <ul>
+        <li *ngFor="let tag of pesquisaJS.includeTags">{{tag}}</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <h3>Excluidas</h3>
+      <ul>
+        <li *ngFor="let tag of pesquisaJS.excludeTags">{{tag}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <h2 class="col-12">Resultados: {{listVideo? listVideo.length: 0}}</h2>
+  </div>
+  <div class="row row-video" *ngFor="let video of listVideo">
+    <div class="col-10">
+      <div class="col-12 title">
+        <span class="badge badge-light">{{video.rating}}</span> {{video.idVideo}} - {{video.title}}
+      </div>
+      <div class="col-12 tags">
+        Tags: {{video.tags}}
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="btn btn-info" (click)="play(video.idVideo)">Rodar</div>
+    </div>
+
+  </div>
+</div>

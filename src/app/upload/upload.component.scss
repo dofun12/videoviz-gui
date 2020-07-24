@@ -1,0 +1,50 @@
+.menu-lateral{
+  width: 60%;
+  height: 100vh;
+  float: left;
+  background-color: #95999c;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  left: 0;
+  overflow: hidden;
+  display: none;
+
+  ul{
+    list-style: none;
+    padding: 0;
+    li{
+      background: white;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+
+.menu-item{
+  cursor: pointer;
+}
+
+.enabled{
+  display: block !important;
+}
+.navbar-toggler{
+  display: none !important;
+}
+.header{
+  text-align: center;
+}
+.header h1{
+  font-family: serif;
+  font-size: 38px;
+  font-family: 'Times New Roman';
+}
+.content{
+  margin: 100px;
+}
+.margin25{
+  margin: 25px;
+}
+.upload{
+  cursor: pointer;
+}

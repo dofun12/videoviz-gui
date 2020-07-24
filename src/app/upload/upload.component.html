@@ -1,0 +1,54 @@
+<app-menubar></app-menubar>
+<div class="container-fluid" style="overflow: auto;height: 95vh;">
+
+  <div class="row form-group">
+    <div class="col-12">
+      <span>Title</span>
+      <input type="text" [(ngModel)]="videoModel.title" class="form-control" >
+    </div>
+
+    <div class="col-12">
+      <span>Tags</span>
+      <input type="text" class="form-control" [(ngModel)]="videoModel.originalTags" >
+    </div>
+    <div class="col-12">
+      <div class="btn btn-info" (click)="salvar(false)">Salvar</div>
+    </div>
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+  <div class="row form-group" *ngIf="this.idVideo">
+
+    <div class="col-12">
+      <span>Video Size</span>
+      <input readonly type="text" class="form-control" [(ngModel)]="videoModel.videoSize" >
+    </div>
+    <div class="col-12">
+      <span>Image</span>
+    </div>
+    <div class="col-12">
+      <img [src]="videoModel.imageUrl" style="width: 100px;height: 100px;">
+    </div>
+    <div class="col-12">
+      <span>Code</span>
+      <input readonly type="text" class="form-control" [(ngModel)]="videoModel.code" >
+    </div>
+
+    <div class="col-12">
+      <div class="input-group">
+        <div class="custom-file">
+          <form [action]="getUploadUrl()" method="post" enctype="multipart/form-data">
+            <input  accept="video/mp4" (change)="fileChange($event)"  type="file" id="inputGroupFile01" >
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="btn btn-info" (click)="upload()">Upload</div>
+      <div class="btn btn-info" (click)="salvar(true)">Salvar</div>
+      {{resposta}}
+    </div>
+  </div>
+
+</div>

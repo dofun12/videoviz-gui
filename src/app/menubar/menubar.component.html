@@ -1,0 +1,25 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button (click)="session.mostrarEsconderMenu()" class="navbar-brand btn btn-light"><span class="fas fa-bars" ></span></button>
+    <button class="navbar-toggler" type="button"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div *ngIf="mostrarResumo">
+      <span><i style="color: gold;" class="fa fa-star"></i>x {{rating}}</span>
+      <span style="margin-left: 10px;"><i class="fa fa-list"></i>x {{tags}}</span>
+    </div>
+  </nav>
+  <div [ngClass]="{'enabled':session.mostrarMenu}" class="menu-lateral toggled">
+    <ul>
+      <li class="menu-item" routerLink="/playlist">Playlist</li>
+      <li class="menu-item" routerLink="/busca">Pesquisa</li>
+      <li class="menu-item" routerLink="/busca-avancada">Pesquisa Avançada</li>
+      <li class="menu-item" routerLink="/upload">Upload</li>
+      <li class="menu-item" routerLink="/fila">Fila download</li>
+      <li *ngFor="let type of videoType" [routerLink]="['/videos',type.key]" (click)="session.closeMenu()"
+          class="menu-item"><span>{{type.description}}</span></li>
+    </ul>
+
+  </div>
+</header>

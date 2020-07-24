@@ -1,0 +1,16 @@
+<app-menubar></app-menubar>
+<div class="container-fluid" style="overflow: auto;height: 95vh;">
+  <div class="row">
+    <div class="col-12 col-md-2 card-container" (click)="play(video.idVideo)" *ngFor="let video of listVideo">
+      <div class="col-12  container-header">
+        {{video.idVideo}}
+      </div>
+      <div class="col-12">
+        <img src="{{getImageURL(video.code)}}"/>
+      </div>
+      <div class="col-12 container-title">
+        {{video.title}}
+      </div>
+    </div>
+  </div>
+</div>

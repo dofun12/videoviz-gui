@@ -1,0 +1,136 @@
+<app-menubar></app-menubar>
+<div class="container-fluid" style="overflow: auto;height: 95vh;">
+
+  <div class="row form-group">
+    <div class="col-2">Criterio</div>
+    <div class="col-4">Condição</div>
+    <div class="col-2">Campo</div>
+    <div class="col-4">Valor</div>
+  </div>
+  <div class="row form-group">
+    <div class="col-2">
+      <select class="form-control" [(ngModel)]="tituloFilter.criterio">
+        <option *ngFor="let cond of getCriterios()" value="{{cond.value}}">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <select class="form-control" [(ngModel)]="tituloFilter.condicao">
+        <option *ngFor="let cond of getCondicaoList('texto')" value="{{cond.value}}">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-2"><input type="text" class="form-control" [(ngModel)]="tituloFilter.campo" value="titulo" readonly>
+    </div>
+    <div class="col-3">
+      <input type="text" class="form-control" [(ngModel)]="tituloFilter.valor"/>
+    </div>
+    <div class="col-1">
+      <div class="btn btn-info" (click)="adicionarCondicao(tituloFilter)"><span class="fa fa-plus"></span></div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-2">
+      <select class="form-control" [(ngModel)]="tagFilter.criterio">
+        <option *ngFor="let cond of getCriterios()"
+                value="{{cond.value}}">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <select class="form-control" [(ngModel)]="tagFilter.condicao">
+        <option *ngFor="let cond of getCondicaoList('texto')" [selected]="cond.selected"
+                [value]="cond.value">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-2"><input type="text" class="form-control" [(ngModel)]="tagFilter.campo" readonly></div>
+    <div class="col-3">
+      <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="tagFilter.valor"
+             [ngbTypeahead]="search"/>
+    </div>
+    <div class="col-1">
+      <div class="btn btn-info" (click)="adicionarCondicao(tagFilter)"><span class="fa fa-plus"></span></div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-2">
+      <select class="form-control" [(ngModel)]="ratingFilter.criterio">
+        <option *ngFor="let cond of getCriterios()" [value]="cond.value">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <select class="form-control" [(ngModel)]="ratingFilter.condicao">
+        <option *ngFor="let cond of getCondicaoList('numero')" value="{{cond.value}}">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-2"><input type="text" class="form-control" readonly [(ngModel)]="ratingFilter.campo"></div>
+    <div class="col-3">
+      <input type="numer" class="form-control" [(ngModel)]="ratingFilter.valor"/>
+    </div>
+    <div class="col-1">
+      <div class="btn btn-info" (click)="adicionarCondicao(ratingFilter)"><span class="fa fa-plus"></span></div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-4">
+      Sort by
+      <select class="form-control" [(ngModel)]="pesquisaAvancada.sortColumn">
+        <option *ngFor="let cond of getSortColumns()" value="{{cond.value}}">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-4">
+      Sort mode
+      <select class="form-control" [(ngModel)]="pesquisaAvancada.sortType">
+        <option *ngFor="let cond of getSortTypes()" value="{{cond.value}}">{{cond.label}}</option>
+      </select>
+    </div>
+    <div class="col-1">
+      <div class="btn btn-info" (click)="limpar()">Limpar <span class="fa fa-trash"></span></div>
+    </div>
+    <div class="col-1">
+      <div class="btn btn-info" (click)="pesquisar()">Pesquisar <span class="fa fa-search"></span></div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-12" *ngFor="let cond of pesquisaAvancada.condicoes">
+      <span class="condicao" [textContent]="cond.criterio"></span>
+      <span class="condicao" [textContent]="cond.campo"></span>
+      <span class="condicao" [textContent]="cond.condicao"></span>
+      <span class="condicao" [textContent]="cond.valor"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2 class="col-12">Resultados: {{listVideo ? listVideo.length : 0}}</h2>
+  </div>
+  <div class="row row-video" *ngFor="let video of listVideo">
+    <div class="col-10">
+      <div class="col-12 title">
+        <span class="badge badge-light">{{video.rating}}</span> {{video.idVideo}} - {{video.title}}
+      </div>
+      <div class="col-12 tags">
+        Tags: {{video.tags}}
+      </div>
+      <div class="col-2 infos">
+        lastwatched: {{formatDate(video.lastwatched)}}
+      </div>
+      <div class="col-2 infos">
+        adicionado: {{formatDate(video.dateAdded)}}
+      </div>
+      <div class="col-2 infos">
+        duration: {{video.duration}}
+      </div>
+      <div class="col-2 infos">
+        code: {{video.code}}
+      </div>
+      <div class="col-2 infos">
+        invalid: {{video.invalid}}
+      </div>
+      <div class="col-2 infos">
+        isdeleted: {{video.isdeleted}}
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="btn btn-info" (click)="play(video.idVideo)">Rodar</div>
+    </div>
+
+  </div>
+</div>
