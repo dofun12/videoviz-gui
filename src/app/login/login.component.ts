@@ -12,6 +12,11 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loginService.checkLogin().subscribe(retorno=>{
+        if(retorno.success){
+          this.router.navigateByUrl("/videos/all");
+        }
+    });
   }
 
 
@@ -24,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.disableButton = false;
         if(retorno.success){
           localStorage.setItem('jwt',retorno.data);
-          this.router.navigateByUrl("/videos")
+          this.router.navigateByUrl("/videos/all")
         }
       });
   }
