@@ -11,20 +11,21 @@ import {UploadComponent} from "./upload/upload.component";
 import {FilaDownloadComponent} from "./fila-download/fila-download.component";
 import {InfoComponent} from "./info/info.component";
 import {LoginComponent} from "./login/login.component";
+import {AuthGuardService} from "./guards/auth-guard.service";
 
 const routes: Routes = [
-  {path: 'play/id/:idVideo', component: VideoSessionComponent},
-  {path: 'videos', component: VideoListComponent},
-  {path: 'videos/:type', component: VideoListComponent},
-  {path: 'videos/:type/:page', component: VideoListComponent},
-  {path: 'playlist', component: PlaylistComponent},
-  {path: 'busca', component: BuscaComponent},
-  {path: 'busca-avancada', component: BuscaAvancadaComponent},
-  {path: 'upload', component: UploadComponent},
-  {path: 'fila', component: FilaDownloadComponent},
-  {path: 'info', component: InfoComponent},
+  {path: 'play/id/:idVideo', component: VideoSessionComponent, canActivate: [AuthGuardService]},
+  {path: 'videos', component: VideoListComponent, canActivate: [AuthGuardService]},
+  {path: 'videos/:type', component: VideoListComponent, canActivate: [AuthGuardService]},
+  {path: 'videos/:type/:page', component: VideoListComponent, canActivate: [AuthGuardService]},
+  {path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuardService]},
+  {path: 'busca', component: BuscaComponent, canActivate: [AuthGuardService]},
+  {path: 'busca-avancada', component: BuscaAvancadaComponent, canActivate: [AuthGuardService]},
+  {path: 'upload', component: UploadComponent, canActivate: [AuthGuardService]},
+  {path: 'fila', component: FilaDownloadComponent, canActivate: [AuthGuardService]},
+  {path: 'info', component: InfoComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/videos/unrated', pathMatch: 'full'}
+  {path: '', redirectTo: '/login', pathMatch: 'full'}
 
 ];
 

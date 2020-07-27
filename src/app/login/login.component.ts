@@ -14,11 +14,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   usuario: string;
   senha: string;
-
+  disableButton = false;
   doLogin(): void{
+      this.disableButton = true;
       this.loginService.doLogin(this.usuario,this.senha).subscribe(retorno =>{
+        this.disableButton = false;
         if(retorno.success){
           localStorage.setItem('jwt',retorno.data);
           this.router.navigateByUrl("/videos")

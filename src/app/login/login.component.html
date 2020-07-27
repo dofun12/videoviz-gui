@@ -15,7 +15,7 @@
 
       </div>
       <div class="col-4">
-        <input type="submit" class="btn btn-primary float-right" (click)="doLogin()" value="Sign In"/>
+        <input type="submit" [disabled]="disableButton" class="btn btn-primary float-right" (click)="doLogin()" value="Sign In"/>
       </div>
     </div>
 

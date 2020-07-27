@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Constants} from "./constants";
 import {HttpClient} from "@angular/common/http";
 import {JsonResponse} from "./model/JsonResponse";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,14 @@ import {JsonResponse} from "./model/JsonResponse";
 export class LoginService {
 
 
-  url = Constants.getRemoteUrl()+'/api/auth';
-  constructor(private http: HttpClient) { }
+  url = Constants.getApiUrl()+'/auth';
+  constructor(private http: ApiService) { }
 
   doLogin(usuario: string,senha: string) {
+    return this.http.doLogin(usuario,senha);
+  }
 
-    const data  = {"username": usuario, "password": senha};
-    console.log(data);
-    return this.http.post<JsonResponse>(this.url+"/signin",data );
+  checkLogin() {
+    return this.http.get(this.url+"/verify");
   }
 }
