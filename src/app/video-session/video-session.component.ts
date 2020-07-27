@@ -123,9 +123,11 @@ export class VideoSessionComponent implements OnInit {
   }
 
   play(idVideo: string) {
+
     this.idVideo = idVideo;
     this.getInfo(idVideo);
     this.updateHistory(idVideo);
+    this.videoPlayer.currentTime = 0;
     this.currentTime = 0;
     this.storage.clear();
     this.started = true;
@@ -203,8 +205,7 @@ export class VideoSessionComponent implements OnInit {
         this.position = this.position + 1;
         const next = this.position;
         const nextVideo = this.lastVideos[next];
-        this.videoPlayer.currentTime = 0;
-        this.currentTime = 0;
+
         this.play(this.lastVideos[next].idVideo.toString());
         //this.router.navigateByUrl(`/play/id/${this.lastVideos[next].idVideo}`);
 
