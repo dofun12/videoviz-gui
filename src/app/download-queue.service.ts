@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Constants} from "./constants";
 import {HttpClient} from "@angular/common/http";
 import {DownloadQueue} from "./downloadQueue";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {DownloadQueue} from "./downloadQueue";
 export class DownloadQueueService {
 
   url = Constants.getApiUrl()+'/downloadQueue';
-  constructor(private http: HttpClient) { }
+  constructor(private http: ApiService) { }
 
   getListAll() {
     return this.http.get(this.url+"/");

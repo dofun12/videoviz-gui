@@ -5,6 +5,7 @@ import {PesquisaJS} from "./model/PesquisaJS";
 import {PesquisaAvancadaJS} from "./model/PesquisaAvancadaJS";
 import {VideoModel} from "./model/videoModel";
 import {VideoJS} from "./videoJS";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class VideoService {
 
 
   url = Constants.getApiUrl()+'/video';
-  constructor(private http: HttpClient) { }
+  constructor(private http: ApiService) { }
 
   getListTypes() {
     return this.http.get(this.url+"/type/");

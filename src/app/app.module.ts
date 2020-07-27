@@ -21,6 +21,7 @@ import { BuscaAvancadaComponent } from './busca-avancada/busca-avancada.componen
 import { UploadComponent } from './upload/upload.component';
 import { FilaDownloadComponent } from './fila-download/fila-download.component';
 import { InfoComponent } from './info/info.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -38,7 +39,8 @@ import { InfoComponent } from './info/info.component';
     BuscaAvancadaComponent,
     UploadComponent,
     FilaDownloadComponent,
-    InfoComponent
+    InfoComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,

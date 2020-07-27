@@ -10,6 +10,7 @@ import {PesquisaAvancadaJS} from "./model/PesquisaAvancadaJS";
 import {UploadComponent} from "./upload/upload.component";
 import {FilaDownloadComponent} from "./fila-download/fila-download.component";
 import {InfoComponent} from "./info/info.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   {path: 'play/id/:idVideo', component: VideoSessionComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'upload', component: UploadComponent},
   {path: 'fila', component: FilaDownloadComponent},
   {path: 'info', component: InfoComponent},
+  {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/videos/unrated', pathMatch: 'full'}
 
 ];

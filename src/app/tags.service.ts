@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import  { Constants } from './constants';
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class TagsService {
 
 
   url = Constants.getApiUrl()+'/tag';
-  constructor(private http: HttpClient) { }
+  constructor(private http: ApiService) { }
 
   getList() {
     return this.http.get(this.url+"/");
