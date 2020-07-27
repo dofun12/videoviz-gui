@@ -5,7 +5,7 @@
     <div class="row" style="height:50%;">
       <video controls (timeupdate)="onTimeUpdate()" id="videoElement" class="col-12"
              style="width: 100%;background-color: black;max-height: 50vh;/*object-fit: cover;*/"
-             #videoElement (ended)="onEnded()" [src]="videoSrc" [autoplay]="autoplay" (loadeddata)="onLoaded()"></video>
+             #videoElement [src]="videoSrc" [autoplay]="autoplay" (loadeddata)="onLoaded()"></video>
 
     </div>
 

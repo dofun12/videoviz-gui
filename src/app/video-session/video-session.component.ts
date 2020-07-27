@@ -171,7 +171,7 @@ export class VideoSessionComponent implements OnInit {
     const secondsCounter = interval(1000);
 
     secondsCounter.subscribe(n => {
-      if (videoPlayer.currentTime === videoPlayer.duration) {
+      if (videoPlayer.currentTime && videoPlayer.currentTime === videoPlayer.duration) {
         this.onEnded();
       }
       storageService.storeItem(key, videoPlayer.currentTime.toString());
