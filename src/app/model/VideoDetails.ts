@@ -8,6 +8,7 @@ export class VideoDetails {
   favorite: boolean;
   rating: number;
   isdeleted: number;
+  context: string;
   video_size: string;
   dateAdded: number;
   isfileexist: number;

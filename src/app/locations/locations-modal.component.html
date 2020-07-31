@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">Sessão Expirada!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="idLocation">idLocation</label>
+        <input type="number" [(ngModel)]="location.idLocation" readonly class="form-control" id="idLocation">
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="path">Path</label>
+        <input type="text" [(ngModel)]="location.path" class="form-control" id="path">
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="context">Context</label>
+        <input type="text" [(ngModel)]="location.context" class="form-control" id="context">
+      </div>
+    </div>
+    <div class="col-12">
+
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button (click)="closeModal()" class="btn btn-primary">Submit</button>
+</div>

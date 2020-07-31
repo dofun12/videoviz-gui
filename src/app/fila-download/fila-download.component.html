@@ -9,6 +9,12 @@
       <label>Download URL: </label>
       <input class="form-control" [(ngModel)]="downloadUrl"/>
     </div>
+    <div class="col-12">
+      <label>File path: </label>
+      <select class="form-control" [(ngModel)]="locationId">
+        <option *ngFor="let loc of listLocation" [value]="loc.idLocation" [text]="loc.path"></option>
+      </select>
+    </div>
     <div class="col-6" style="padding-top: 10px;">
       <div class="btn btn-info form-control" (click)="adicionarAFila()">Adicionar</div>
     </div>

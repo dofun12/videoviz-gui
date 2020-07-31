@@ -105,11 +105,13 @@ export class VideoSessionComponent implements OnInit {
   getInfo(idVideo: string) {
     window.scrollTo(0, 0);
     this.videoService.getInfo(idVideo).subscribe((value: JsonResponse) => {
+
       const videoDetails: VideoDetails = value.data;
+      console.log(videoDetails);
       this.videoDetails = videoDetails;
-      this.imageUrl = Constants.getImageUrl(videoDetails.code);
+      this.imageUrl = Constants.getImageUrl(videoDetails.context,videoDetails.code);
       this.loadStars(videoDetails.rating);
-      this.videoSrc = Constants.getVideoUrl(this.videoDetails.code);
+      this.videoSrc = Constants.getVideoUrl(videoDetails.context,videoDetails.code);
       this.menuTitle = videoDetails.title;
       this.infoListItem = [];
       const keys: string[] = Object.keys(videoDetails);

@@ -4,6 +4,9 @@ import {VideoService} from "../video.service";
 import {DownloadQueue} from "../downloadQueue";
 import {timer} from "rxjs";
 import {take} from "rxjs/operators";
+import {LocationsService} from "../locations.service";
+import {LocationJS} from "../model/LocationJS";
+import {UploadService} from "../upload.service";
 
 @Component({
   selector: 'app-fila-download',
@@ -12,11 +15,13 @@ import {take} from "rxjs/operators";
 })
 export class FilaDownloadComponent implements OnInit {
 
-  constructor(private downloadQueue: DownloadQueueService, private videoService: VideoService) { }
+  constructor(private downloadQueue: DownloadQueueService, private videoService: VideoService, private locationService: LocationsService, private uploadService: UploadService) { }
 
   listQueue : DownloadQueue[];
   pageUrl: string;
   downloadUrl: string;
+  locationId: number;
+  listLocation: LocationJS[];
   selectedQueue: DownloadQueue;
 
   getClass(queue: DownloadQueue){
@@ -30,9 +35,10 @@ export class FilaDownloadComponent implements OnInit {
   }
 
   adicionarAFila(){
-    this.videoService.addToDownloadQueue(this.pageUrl,this.downloadUrl).subscribe(retorno=>{
+    this.uploadService.addToDownloadQueue(this.pageUrl,this.downloadUrl,this.locationId).subscribe(retorno=>{
       this.pageUrl = '';
       this.downloadUrl = '';
+      this.locationId = null;
       console.log("Adicionado");
     });
   }
@@ -53,6 +59,7 @@ export class FilaDownloadComponent implements OnInit {
     this.selectedQueue.pageUrl = this.pageUrl;
     this.selectedQueue.videoUrl = this.downloadUrl;
     this.selectedQueue.inProgress = 0;
+    this.selectedQueue.idLocation = this.locationId;
     this.selectedQueue.failed = 0;
     this.selectedQueue.situacao = 'Re-Adicionado'
     this.selectedQueue.finished = 0;
@@ -61,8 +68,15 @@ export class FilaDownloadComponent implements OnInit {
     });
   }
 
+  refreshLocations(){
+    this.locationService.getListAll().subscribe(retorno=> {
+      this.listLocation = retorno.data;
+    });
+  }
+
   ngOnInit(): void {
     this.updateFila();
+    this.refreshLocations();
     timer(1000, 10000).subscribe(x=>{
       this.updateFila();
     });

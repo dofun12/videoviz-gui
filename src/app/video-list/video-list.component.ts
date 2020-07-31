@@ -39,8 +39,8 @@ export class VideoListComponent implements OnInit {
 
   }
 
-  getImageURL(code: string){
-    return Constants.getImageUrl(code);
+  getImageURL(context: string,code: string){
+    return Constants.getImageUrl(context,code);
   }
 
   play(idVideo: number){

@@ -23,6 +23,8 @@ import { FilaDownloadComponent } from './fila-download/fila-download.component';
 import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { GenericModalComponent } from './generic-modal/generic-modal.component';
+import { LocationsComponent } from './locations/locations.component';
+import {LocationsModalComponent} from "./locations/locations-modal.component";
 
 
 
@@ -42,7 +44,9 @@ import { GenericModalComponent } from './generic-modal/generic-modal.component';
     FilaDownloadComponent,
     InfoComponent,
     LoginComponent,
-    GenericModalComponent
+    GenericModalComponent,
+    LocationsComponent,
+    LocationsModalComponent
   ],
     imports: [
         BrowserModule,

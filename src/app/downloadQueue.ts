@@ -8,6 +8,7 @@ export class DownloadQueue{
   videoUrl: string;
   fileOrigin: string;
   code: string;
+  idLocation: number;
   videoSize: number;
   dateAdded: string;
   inProgress: number;
