@@ -1,0 +1,16 @@
+<app-menubar></app-menubar>
+<div class="container-fluid" style="overflow: auto;height: 95vh;">
+
+  <div class="row">
+    <div class="col-10">
+      Nova localizaçao
+    </div>
+    <div class="col-2">
+      <button class="btn btn-info " (click)="novo()"><span class="fa fa-plus"></span> </button>
+    </div>
+
+  </div>
+  <div class="row" *ngFor="let loc of locations">
+    <div class="col-12">{{loc.path}}</div>
+  </div>
+</div>
