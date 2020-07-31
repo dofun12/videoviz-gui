@@ -6,6 +6,7 @@ export class VideoSimple {
   idVideo: number;
   favorite: boolean;
   rating: number;
+  context: string;
   isdeleted: number;
   video_size: number;
   tags:string;

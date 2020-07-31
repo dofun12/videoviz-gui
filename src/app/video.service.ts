@@ -48,16 +48,11 @@ export class VideoService {
     return this.http.post(path,formData);
   }
 
+
   lastBusca(){
     return this.http.get(this.url+"/lastBusca");
   }
 
-  addToDownloadQueue(pageUrl: string, downloadUrl: string) {
-    return this.http.post(this.url+"/addURLv2",{
-      'pageUrl': pageUrl,
-      'downloadUrl': downloadUrl
-    });
-  }
 
   recreate(code: string) {
     return this.http.get(`${this.url}/recreate/${code}`);

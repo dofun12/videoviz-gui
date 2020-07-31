@@ -2,6 +2,7 @@ export class VideoJS {
   idVideo: number;
   title: string;
   code: string;
+  context: string;
   pageUrl: string;
   mediaUrl: string;
   imageUrl: string;
