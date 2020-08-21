@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { GenericModalComponent } from './generic-modal/generic-modal.component';
 import { LocationsComponent } from './locations/locations.component';
 import {LocationsModalComponent} from "./locations/locations-modal.component";
+import { HomeComponent } from './home/home.component';
+import { UploadModalComponent } from './modals/upload-modal/upload-modal.component';
 
 
 
@@ -46,7 +48,9 @@ import {LocationsModalComponent} from "./locations/locations-modal.component";
     LoginComponent,
     GenericModalComponent,
     LocationsComponent,
-    LocationsModalComponent
+    LocationsModalComponent,
+    HomeComponent,
+    UploadModalComponent
   ],
     imports: [
         BrowserModule,

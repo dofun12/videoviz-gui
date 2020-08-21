@@ -54,8 +54,6 @@ export class UploadComponent implements OnInit {
 
 
   upload() {
-    this.uploaded = true;
-    this.afterUploadList = [];
     this.runQueue(0);
   }
 
@@ -71,9 +69,12 @@ export class UploadComponent implements OnInit {
       if(this.total>this.queue){
         this.runQueue(this.queue);
       }else{
+        this.uploadedFiles = [];
         console.log("This is the end");
       }
-    });
+    }) , (error) =>{
+      console.log("upload error");
+    };
   }
 
   getImage(context: string,code: string) {
@@ -81,7 +82,7 @@ export class UploadComponent implements OnInit {
   }
 
   getUploadUrl() {
-    return environment.apiUrlDireto + '/video/upload';
+    return environment.apiUrlDireto + '/upload/sendFile';
   }
 
   ngOnInit(): void {

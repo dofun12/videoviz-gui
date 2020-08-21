@@ -11,6 +11,6 @@
 
   </div>
   <div class="row" *ngFor="let loc of locations">
-    <div class="col-12">{{loc.path}}</div>
+    <div class="col-12" *ngIf="loc">{{loc.path}}</div>
   </div>
 </div>

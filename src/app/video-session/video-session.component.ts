@@ -12,7 +12,7 @@ import {Star} from "../model/Star";
 import {Item} from "../model/Item";
 import {VideoSimple} from "../video-simple";
 import {StorageService} from "../storage.service";
-import {interval, Observable} from "rxjs";
+import {interval, Observable, Subscription} from "rxjs";
 import {PlaylistService} from "../playlist.service";
 import {Playlist} from "../model/Playlist";
 import {VideoPlaylist} from "../model/VideoPlaylist";
@@ -61,6 +61,8 @@ export class VideoSessionComponent implements OnInit {
   imageUrl = null;
   playLista: Playlist[];
   started: boolean = true;
+  durationService: Subscription = null;
+
 
   constructor(private route: ActivatedRoute,
               private playlistService: PlaylistService,
@@ -166,15 +168,20 @@ export class VideoSessionComponent implements OnInit {
   ngOnInit() {
     console.log('Init');
     this.iniciar();
+    this.startCount();
+  }
 
+  startCount(){
+    if(this.durationService){
+      this.durationService.unsubscribe();
+    }
     const key = StorageService.KEY_TIME;
     const videoPlayer = this.videoPlayer;
     const storageService = this.storage;
     const method = this.onEnded();
 
-    const secondsCounter = interval(1000);
-
-    secondsCounter.subscribe(n => {
+    const secondsCounter = interval(1000 );
+    this.durationService = secondsCounter.subscribe(n => {
       if (videoPlayer.currentTime && videoPlayer.currentTime === videoPlayer.duration) {
         this.onEnded();
       }
@@ -207,7 +214,7 @@ export class VideoSessionComponent implements OnInit {
         this.position = this.position + 1;
         const next = this.position;
         const nextVideo = this.lastVideos[next];
-
+        this.startCount();
         this.play(this.lastVideos[next].idVideo.toString());
         //this.router.navigateByUrl(`/play/id/${this.lastVideos[next].idVideo}`);
 
