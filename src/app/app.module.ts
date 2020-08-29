@@ -27,6 +27,7 @@ import { LocationsComponent } from './locations/locations.component';
 import {LocationsModalComponent} from "./locations/locations-modal.component";
 import { HomeComponent } from './home/home.component';
 import { UploadModalComponent } from './modals/upload-modal/upload-modal.component';
+import { EditVideoModalComponent } from './modals/edit-video-modal/edit-video-modal.component';
 
 
 
@@ -50,7 +51,8 @@ import { UploadModalComponent } from './modals/upload-modal/upload-modal.compone
     LocationsComponent,
     LocationsModalComponent,
     HomeComponent,
-    UploadModalComponent
+    UploadModalComponent,
+    EditVideoModalComponent
   ],
     imports: [
         BrowserModule,

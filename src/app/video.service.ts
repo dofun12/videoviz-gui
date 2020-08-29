@@ -74,4 +74,8 @@ export class VideoService {
   getInfo(idVideo: string) {
     return this.http.get(this.url+"/"+idVideo);
   }
+
+  update(videoJS: VideoJS) {
+    return this.http.put(this.url+"/",videoJS);
+  }
 }

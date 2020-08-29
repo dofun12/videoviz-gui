@@ -10,6 +10,9 @@ import {LocationsService} from "../locations.service";
 import {LocationJS} from "../model/LocationJS";
 import {Observable,  ConnectableObservable} from "rxjs";
 import {concatAll} from "rxjs/operators";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {EditVideoModalComponent} from "../modals/edit-video-modal/edit-video-modal.component";
+import {ModalManagerService} from "../modal-manager.service";
 
 @Component({
   selector: 'app-upload',
@@ -28,65 +31,44 @@ export class UploadComponent implements OnInit {
   afterUploadList:VideoJS[] = [];
   uploadedFiles: Array<File>;
 
-  constructor(private videoService: VideoService, private locationService: LocationsService) {
+  constructor(
+    private videoService: VideoService,
+    private locationService: LocationsService,
+    private modalManagerService: ModalManagerService
+  ) {
   }
+
+
 
   fileChange(element) {
     this.uploadedFiles = element.target.files;
     this.total = this.uploadedFiles.length;
   }
 
-  refreshLocations() {
-    this.locationService.getListAll().subscribe(retorno => {
-      this.locations = retorno.data;
-    });
-  }
-
-  salvar(salvarTudo: boolean) {
-    this.videoService.novo(this.videoModel).subscribe((retorno: JsonResponse) => {
-      this.videoModel = retorno.data;
-      this.idVideo = this.videoModel.idVideo;
-      if (salvarTudo) {
-        this.upload();
+  openUploadModal(){
+    const modalRef = this.modalManagerService.openUploadModal();
+    modalRef.componentInstance.onUpload.subscribe((videosJS: VideoJS[]) => {
+      console.log('Opa saindo do forno', videosJS);
+      for(const v of videosJS){
+        this.afterUploadList.push(v);
       }
     });
   }
 
-
-  upload() {
-    this.runQueue(0);
+  openEditModal(idVideo: number){
+    this.modalManagerService.openVideoEditModal(idVideo);
   }
 
-  private runQueue(queue: number){
-    const file = this.uploadedFiles[queue];
-    let formData = new FormData();
-    formData.append("file", file, file.name);
-    formData.append("idLocation", '' + this.idLocation);
-    this.videoService.uploadFile(this.getUploadUrl(), formData).subscribe(retorno=>{
-      console.log('Receiving...', retorno.data);
-      this.queue++;
-      this.afterUploadList.push(retorno.data[0]);
-      if(this.total>this.queue){
-        this.runQueue(this.queue);
-      }else{
-        this.uploadedFiles = [];
-        console.log("This is the end");
-      }
-    }) , (error) =>{
-      console.log("upload error");
-    };
+  refresh(){
+    console.log(this.afterUploadList);
   }
 
   getImage(context: string,code: string) {
     return Constants.getImageUrl(context,code);
   }
 
-  getUploadUrl() {
-    return environment.apiUrlDireto + '/upload/sendFile';
-  }
 
   ngOnInit(): void {
-    this.refreshLocations();
   }
 
 }
