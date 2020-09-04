@@ -16,6 +16,9 @@ import {Condicao} from "../model/condicao";
 import {FormControl, FormGroup} from "@angular/forms";
 import {PesquisaAvancadaJS} from "../model/PesquisaAvancadaJS";
 import * as moment from 'moment';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {EditVideoModalComponent} from "../modals/edit-video-modal/edit-video-modal.component";
+import {ModalManagerService} from "../modal-manager.service";
 
 @Component({
   selector: 'app-busca-avancada',
@@ -41,7 +44,7 @@ export class BuscaAvancadaComponent implements OnInit {
 
 
   constructor(private videoService: VideoService, private tagsService: TagsService,private route: ActivatedRoute,
-              private router: Router, private session: Session, private storage: StorageService) {
+              private router: Router, private session: Session, private storage: StorageService, private modalManagerService: ModalManagerService) {
     this.reset();
 
   }
@@ -181,6 +184,11 @@ export class BuscaAvancadaComponent implements OnInit {
     this.imageUrl = environment.remoteImageUrl;
 
   }
+
+  openModal(idVideo: number){
+    this.modalManagerService.openVideoEditModal(idVideo);
+  }
+
 
   play(idVideo: number) {
     this.storage.clear();

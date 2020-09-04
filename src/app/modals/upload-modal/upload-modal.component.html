@@ -1,0 +1,31 @@
+
+<div class="modal-header">
+  <h4 class="modal-title">Edit Video</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row form-group" >
+    <div class="col-12">
+      <select class="form-control" [(ngModel)]="idLocation">
+        <option *ngFor="let loc of locations" [text]="loc.path" [value]="loc.idLocation"></option>
+      </select>
+    </div>
+    <div class="col-12">
+      <div class="input-group">
+        <div class="custom-file">
+          <form [action]="getUploadUrl()" method="post" enctype="multipart/form-data">
+            <input  class="form-control" accept="video/mp4" multiple (change)="fileChange($event)"  type="file" id="inputGroupFile01" >
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="btn btn-info" (click)="upload()">Upload</div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

@@ -1,30 +1,17 @@
 <app-menubar></app-menubar>
 <div class="container-fluid" style="overflow: auto;height: 95vh;">
 
-  <div class="row form-group" *ngIf="!uploaded">
-    <div class="col-12">
-      <select [(ngModel)]="idLocation">
-        <option *ngFor="let loc of locations" [text]="loc.path" [value]="loc.idLocation"></option>
-      </select>
-    </div>
-    <div class="col-12">
-      <div class="input-group">
-        <div class="custom-file">
-          <form [action]="getUploadUrl()" method="post" enctype="multipart/form-data">
-            <input  accept="video/mp4" multiple (change)="fileChange($event)"  type="file" id="inputGroupFile01" >
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="btn btn-info" (click)="upload()">Upload</div>
-    </div>
+
+  <div class="row">
+    <div class="col col-8"><h3>Uploaded</h3></div>
+    <div class="col col-2"><button class="btn btn-info" (click)="refresh()">REFRESH</button></div>
+    <div class="col col-2"><button class="btn btn-info" (click)="openUploadModal()">ADD</button></div>
+
   </div>
   <div class="row">
-    <div class="col-4" *ngFor="let video of afterUploadList">
-      <img *ngIf="video" [src]="video.imageUrl">
-      <div>{{video.title}}</div>
-
+    <div class="col-1 col-md-4 col-lg-4" (click)="openEditModal(video.idVideo)" *ngFor="let video of afterUploadList" style="margin-bottom: 10px;">
+      <div>{{video.code}}</div>
+      <img *ngIf="video" [src]="video.imageUrl" style="width: 100%;max-width: 200px;height: auto;min-height: 100px;">
     </div>
   </div>
 </div>

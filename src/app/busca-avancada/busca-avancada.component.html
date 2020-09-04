@@ -102,7 +102,7 @@
     <h2 class="col-12">Resultados: {{listVideo ? listVideo.length : 0}}</h2>
   </div>
   <div class="row row-video" *ngFor="let video of listVideo">
-    <div class="col-10">
+    <div class="col-9">
       <div class="col-12 title">
         <span class="badge badge-light">{{video.rating}}</span> {{video.idVideo}} - {{video.title}}
       </div>
@@ -128,7 +128,10 @@
         isdeleted: {{video.isdeleted}}
       </div>
     </div>
-    <div class="col-2">
+    <div class="col-1">
+      <div class="btn btn-info" (click)="openModal(video.idVideo)">Editar</div>
+    </div>
+    <div class="col-1">
       <div class="btn btn-info" (click)="play(video.idVideo)">Rodar</div>
     </div>
 

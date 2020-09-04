@@ -1,6 +1,7 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import * as npm from '../../package.json';
 
 export const environment = {
   production: false,
@@ -8,8 +9,8 @@ export const environment = {
   remoteVideoUrl: "http://localhost:8080",
   remoteImageUrl: "http://localhost:8080",
   apiUrl:  "http://localhost:8080/api",
-  apiUrlDireto:  "http://localhost:8080/api"
-
+  apiUrlDireto:  "http://localhost:8080/api",
+  version: npm.version
   /**
   remoteUrl : "http://192.168.15.102:8080",
   remoteVideoUrl: "http://192.168.15.102:8080",
@@ -17,6 +18,7 @@ export const environment = {
   apiUrl:  "http://192.168.15.102:8080/api",
   apiUrlDireto:  "http://192.168.15.102:8080/api"
   **/
+
 };
 
 /*

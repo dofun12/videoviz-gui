@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h4 class="modal-title">Edit Video</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group row">
+    <label for="idVideo" class="col-4 col-form-label">idVideo</label>
+    <div class="col-8">
+      <input id="idVideo" readonly [(ngModel)]="videoInfo.idVideo" name="idVideo" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="code" class="col-4 col-form-label">Code</label>
+    <div class="col-8">
+      <input id="code" readonly [(ngModel)]="videoInfo.code" name="code" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="title" class="col-4 col-form-label">Title</label>
+    <div class="col-8">
+      <input id="title" [(ngModel)]="videoInfo.title" name="originalTags" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="pageUrl" class="col-4 col-form-label">PageUrl</label>
+    <div class="col-8">
+      <input id="pageUrl" [(ngModel)]="videoInfo.pageUrl" name="pageUrl" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="pageUrl" class="col-4 col-form-label">Original Tags</label>
+    <div class="col-8">
+      <input id="originalTags" [(ngModel)]="videoInfo.originalTags" name="originalTags" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="offset-9 col-8">
+      <button name="submit" (click)="onEdit()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
