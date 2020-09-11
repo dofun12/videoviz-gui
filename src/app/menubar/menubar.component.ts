@@ -32,9 +32,6 @@ export class MenubarComponent implements OnInit {
     this.router.events.subscribe((val)=>{
       this.session.mostrarMenu = false;
     });
-    this.videoService.getListTypes().subscribe((response: JsonResponse)=>{
-      this.videoType = response.data;
-    })
   }
   showMenuLateral: boolean = false;
 

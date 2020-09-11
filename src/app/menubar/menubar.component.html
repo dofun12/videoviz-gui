@@ -12,14 +12,13 @@
   </nav>
   <div [ngClass]="{'enabled':session.mostrarMenu}" class="menu-lateral toggled">
     <ul>
+      <li class="menu-item" routerLink="/home">Home</li>
       <li class="menu-item" routerLink="/playlist">Playlist</li>
       <li class="menu-item" routerLink="/busca">Pesquisa</li>
       <li class="menu-item" routerLink="/busca-avancada">Pesquisa Avançada</li>
       <li class="menu-item" routerLink="/upload">Upload</li>
       <li class="menu-item" routerLink="/fila">Fila download</li>
       <li class="menu-item" routerLink="/locations">Locations</li>
-      <li *ngFor="let type of videoType" [routerLink]="['/videos',type.key]" (click)="session.closeMenu()"
-          class="menu-item"><span>{{type.description}}</span></li>
     </ul>
 
   </div>
