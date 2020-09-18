@@ -60,6 +60,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "remote": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.remote.ts"
+                }
+              ]
             }
           }
         },
@@ -71,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "videoviz-gui:build:production"
+            },
+            "remote": {
+              "browserTarget": "videoviz-gui:build:remote"
             }
           }
         },
@@ -123,6 +134,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "videoviz-gui"
+    }
+  },
+  "defaultProject": "videoviz-gui",
+  "cli": {
+    "analytics": false
+  }
 }
