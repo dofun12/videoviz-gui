@@ -13,6 +13,7 @@ import {InfoComponent} from "./info/info.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuardService} from "./guards/auth-guard.service";
 import {LocationsComponent} from "./locations/locations.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {path: 'play/id/:idVideo', component: VideoSessionComponent, canActivate: [AuthGuardService]},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'fila', component: FilaDownloadComponent, canActivate: [AuthGuardService]},
   {path: 'info', component: InfoComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   {path: 'locations', component: LocationsComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 

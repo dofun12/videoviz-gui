@@ -1,1 +1,21 @@
-<p>home works!</p>
+<app-menubar></app-menubar>
+<div class="container-fluid" style="overflow: auto;height: 95vh;">
+
+  <div class="row">
+    <div *ngFor="let type of videoType" [routerLink]="['/videos',type.key]" (click)="session.closeMenu()"
+         class="col-4" >
+      <div style="background-color: #eee;padding: 5px;margin-top: 5px;">
+        <div class="row">
+          <div class="col-12">
+            <img style="width: 100px;height: 100px;" [src]="getImageSRC()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <span>{{type.description}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
