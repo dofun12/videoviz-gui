@@ -33,7 +33,7 @@ export class VideoSessionComponent implements OnInit {
     this.videoPlayer = el.nativeElement;
     this.videoPlayer.addEventListener("timeupdate", this.onTimeUpdate);
   }
-
+  continueVideo = false;
   menuTitle: string;
   fullscreen: boolean = false;
   idVideo: string;
@@ -43,6 +43,7 @@ export class VideoSessionComponent implements OnInit {
     {tabname: 'info', description: "Info", selected: true},
     {tabname: 'tags', description: "Tags", selected: false},
     {tabname: 'fila', description: "Fila", selected: false},
+    {tabname: 'playlist', description: "Playlist", selected: false},
     {tabname: 'config', description: "Config", selected: false}
   ];
 
@@ -94,6 +95,15 @@ export class VideoSessionComponent implements OnInit {
 
   isSelected(idVideo: number): boolean {
     return ((idVideo + '') == this.idVideo);
+  }
+
+  onChangeContinueVideo(){
+    console.log('onContinueVideo')
+    if(this.continueVideo){
+      this.storage.setContinueVideo(true);
+    }else{
+      this.storage.setContinueVideo(false);
+    }
   }
 
   recreate(code: string){
@@ -155,7 +165,8 @@ export class VideoSessionComponent implements OnInit {
   }
 
   iniciar() {
-    console.log('Iniciar')
+    console.log('Iniciar');
+    this.continueVideo = this.storage.getContinueVideo()
     this.listarPlaylists();
     this.loadLastVideos();
     this.totalTags = 0;
@@ -357,13 +368,14 @@ export class VideoSessionComponent implements OnInit {
 
 
   onLoaded() {
+    if(this.continueVideo){
+      const lastTime = this.storage.getAsInt(StorageService.KEY_TIME);
 
-    const lastTime = this.storage.getAsInt(StorageService.KEY_TIME);
-
-    if (lastTime) {
-      this.videoPlayer.currentTime = Number(lastTime);
+      if (lastTime) {
+        this.videoPlayer.currentTime = Number(lastTime);
+      }
+      this.videoPlayer.play();
     }
-    this.videoPlayer.play();
   }
 
   onAdvanceTenSeconds() {

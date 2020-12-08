@@ -23,6 +23,14 @@ export class StorageService {
     this.put(StorageService.KEY_IS_BUSCA,''+vsession.isBusca);
   }
 
+  setContinueVideo(val: boolean){
+    this.put('continueVideo', ''+val);
+  }
+
+  getContinueVideo(): boolean{
+    return (this.get('continueVideo') == 'true');
+  }
+
   storeItem(key: string,value: any){
     this.put(key, ''+value);
   }

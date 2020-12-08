@@ -60,11 +60,21 @@
       <li [ngClass]="{'selected':isSelected(video.idVideo)}">{{video.idVideo}} - {{video.title}}</li>
     </ul>
   </div>
-  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('config')}">
+  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('playlist')}">
     <div class="row">
       <div class="col-12 tag-list-item" *ngFor="let playlist of playLista" (click)="onSelectPlaylist(playlist)">
         <div class="col-8">{{playlist.name}}</div>
         <div class="col-4"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('config')}">
+    <div class="row" style="padding: 10px;">
+      <div class="col-8">
+        <label for="continue-video">Continue Video</label>
+      </div>
+      <div class="col-4">
+        <input type="checkbox" id="continue-video"  [(ngModel)]="continueVideo" (change)="onChangeContinueVideo()" style="float: right;" />
       </div>
     </div>
   </div>
