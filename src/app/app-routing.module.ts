@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {VideoListComponent} from "./video-list/video-list.component";
-import {PlayerComponent} from "./player/player.component";
-import {VideoSessionComponent} from "./video-session/video-session.component";
 import {PlaylistComponent} from "./playlist/playlist.component";
 import {BuscaComponent} from "./busca/busca.component";
 import {BuscaAvancadaComponent} from "./busca-avancada/busca-avancada.component";
@@ -14,9 +12,10 @@ import {LoginComponent} from "./login/login.component";
 import {AuthGuardService} from "./guards/auth-guard.service";
 import {LocationsComponent} from "./locations/locations.component";
 import {HomeComponent} from "./home/home.component";
+import {VideoSessionNewComponent} from "./video-session-new/video-session-new.component";
 
 const routes: Routes = [
-  {path: 'play/id/:idVideo', component: VideoSessionComponent, canActivate: [AuthGuardService]},
+  {path: 'play/id/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
   {path: 'videos', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type/:page', component: VideoListComponent, canActivate: [AuthGuardService]},

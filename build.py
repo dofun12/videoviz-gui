@@ -34,8 +34,7 @@ def zipdir(path, ziph):
             ziph.write(os.path.join(root, file))
 
 if __name__ == '__main__':
-    print('Running ng build --prod --output-path gui --base-href /gui/')
-    build_angular()
+
     print('Initializing Zip')
     zipf = zipfile.ZipFile('release/gui-'+load()+'.zip', 'w', zipfile.ZIP_DEFLATED)
     zipdir('gui/', zipf)
