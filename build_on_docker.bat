@@ -1,4 +1,5 @@
+docker stop node
 docker rm node
-docker build -t node:latest docker/node
-docker run -d --rm --name node -v E:\projetos\videoviz\videoviz-gui:/app node:latest
+docker build -t node:latest . -f ./build/Dockerfile
+docker run -d --rm -it --name node -v E:/projetos/videoviz/videoviz-gui/gui:/app/gui node:latest
 
