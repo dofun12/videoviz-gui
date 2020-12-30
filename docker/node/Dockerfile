@@ -1,5 +1,6 @@
 FROM node:stretch-slim
 RUN npm install -g @angular/cli
+RUN npm install --save-dev @angular-devkit/build-angular
 #ENTRYPOINT ["ng","serve","--host","0.0.0.0"]
 
 
