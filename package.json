@@ -1,10 +1,11 @@
 {
   "name": "videoviz-gui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng:wq build",
+
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
