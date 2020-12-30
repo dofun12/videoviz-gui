@@ -37,13 +37,7 @@
 
           </div>
 
-          <div class="row info" *ngFor="let info of infoListItem">
-            <div class="col-12 info-title">{{info.description}}</div>
-            <div class="col-12 info-value"><span *ngIf="!info.value">-</span><span
-              *ngIf="info.value">{{info.value}}</span>
-            </div>
 
-          </div>
         </div>
         <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('tags')}">
           <div class="row">
@@ -83,7 +77,13 @@
       </div>
       <div class="col-12">
         <div class="container-fluid">
+          <div class="row info" *ngFor="let info of infoListItem">
+            <div class="col-12 info-title">{{info.description}}</div>
+            <div class="col-12 info-value"><span *ngIf="!info.value">-</span><span
+              *ngIf="info.value">{{info.value}}</span>
+            </div>
 
+          </div>
 
         </div>
       </div>
