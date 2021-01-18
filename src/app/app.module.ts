@@ -29,6 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { UploadModalComponent } from './modals/upload-modal/upload-modal.component';
 import { EditVideoModalComponent } from './modals/edit-video-modal/edit-video-modal.component';
 import { VideoSessionNewComponent } from './video-session-new/video-session-new.component';
+import { CheckupComponent } from './checkup/checkup.component';
 
 
 
@@ -54,7 +55,8 @@ import { VideoSessionNewComponent } from './video-session-new/video-session-new.
     HomeComponent,
     UploadModalComponent,
     EditVideoModalComponent,
-    VideoSessionNewComponent
+    VideoSessionNewComponent,
+    CheckupComponent
   ],
     imports: [
         BrowserModule,
