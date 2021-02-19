@@ -30,6 +30,9 @@ import { UploadModalComponent } from './modals/upload-modal/upload-modal.compone
 import { EditVideoModalComponent } from './modals/edit-video-modal/edit-video-modal.component';
 import { VideoSessionNewComponent } from './video-session-new/video-session-new.component';
 import { CheckupComponent } from './checkup/checkup.component';
+import { CheckLinksComponent } from './check-links/check-links.component';
+import { VideoComponent } from './video/video.component';
+import { VideoModalComponent } from './modals/video-modal/video-modal.component';
 
 
 
@@ -56,7 +59,10 @@ import { CheckupComponent } from './checkup/checkup.component';
     UploadModalComponent,
     EditVideoModalComponent,
     VideoSessionNewComponent,
-    CheckupComponent
+    CheckupComponent,
+    CheckLinksComponent,
+    VideoComponent,
+    VideoModalComponent
   ],
     imports: [
         BrowserModule,

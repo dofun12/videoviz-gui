@@ -10,7 +10,7 @@ import {ApiService} from "./api.service";
 export class LoginService {
 
 
-  url = Constants.getApiUrl()+'/auth';
+  url = Constants.getAuthUrl();
   constructor(private http: ApiService) { }
 
   doLogin(usuario: string,senha: string) {

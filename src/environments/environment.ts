@@ -8,6 +8,7 @@ export const environment = {
   remoteUrl : "http://localhost:8080",
   remoteVideoUrl: "http://localhost:8080",
   remoteImageUrl: "http://localhost:8080",
+  authUrl:  "http://localhost:8080/auth",
   apiUrl:  "http://localhost:8080/api",
   apiUrlDireto:  "http://localhost:8080/api",
   version: npm.version

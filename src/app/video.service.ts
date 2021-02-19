@@ -16,6 +16,10 @@ export class VideoService {
   url = Constants.getApiUrl()+'/video';
   constructor(private http: ApiService) { }
 
+  getMetadata(key, value){
+    return this.http.get(this.url+"/"+key+"/"+value);
+  }
+
   getListTypes() {
     return this.http.get(this.url+"/type/");
   }

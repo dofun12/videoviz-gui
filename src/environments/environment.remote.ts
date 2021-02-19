@@ -9,6 +9,7 @@ export const environment = {
   remoteUrl : "http://192.168.15.102:9090",
   remoteVideoUrl: "http://192.168.15.102:9090",
   remoteImageUrl: "http://192.168.15.102:9090",
+  authUrl:  "http://192.168.15.102:9090/auth",
   apiUrl:  "http://192.168.15.102:9090/api",
   apiUrlDireto:  "http://192.168.15.102:9090/api",
   version: npm.version

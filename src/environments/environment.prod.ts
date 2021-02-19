@@ -3,6 +3,7 @@ export const environment = {
   remoteUrl : "",
   remoteVideoUrl: "",
   remoteImageUrl: "",
+  authUrl:  "/auth",
   apiUrl: "/api",
   apiUrlDireto:  "/api"
 };

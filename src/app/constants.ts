@@ -17,4 +17,8 @@ export class Constants{
   static getApiUrl(){
     return environment.apiUrl;
   }
+
+  static getAuthUrl(){
+    return environment.authUrl;
+  }
 }

@@ -58,7 +58,7 @@ export class ApiService {
   doLogin(usuario: string, senha: string) {
     this.isModalOpened = false;
     const data = {"username": usuario, "password": senha};
-    return this.doPipe(this.http.post<JsonResponse>(Constants.getRemoteUrl() + "/api/auth/signin", data));
+    return this.doPipe(this.http.post<JsonResponse>(Constants.getAuthUrl() + "/signin", data));
   }
 
 

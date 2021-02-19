@@ -14,10 +14,13 @@ import {LocationsComponent} from "./locations/locations.component";
 import {HomeComponent} from "./home/home.component";
 import {VideoSessionNewComponent} from "./video-session-new/video-session-new.component";
 import {CheckupComponent} from "./checkup/checkup.component";
+import {CheckLinksComponent} from "./check-links/check-links.component";
+import {VideoComponent} from "./video/video.component";
 
 const routes: Routes = [
   {path: 'play/id/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
   {path: 'videos', component: VideoListComponent, canActivate: [AuthGuardService]},
+  {path: 'video/:key/:value', component: VideoComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type/:page', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuardService]},
@@ -27,6 +30,7 @@ const routes: Routes = [
   {path: 'fila', component: FilaDownloadComponent, canActivate: [AuthGuardService]},
   {path: 'info', component: InfoComponent, canActivate: [AuthGuardService]},
   {path: 'checkup', component: CheckupComponent, canActivate: [AuthGuardService]},
+  {path: 'check-links', component: CheckLinksComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   {path: 'locations', component: LocationsComponent},
