@@ -35,6 +35,7 @@ export class UploadModalComponent implements OnInit {
 
   refreshLocations() {
     this.locationService.getListAll().subscribe(retorno => {
+      this.idLocation = retorno.data[0].idLocation;
       this.locations = retorno.data;
     });
   }
@@ -59,6 +60,7 @@ export class UploadModalComponent implements OnInit {
     let formData = new FormData();
     formData.append("file", file, file.name);
     formData.append("idLocation", '' + this.idLocation);
+    console.log(formData);
     this.videoService.uploadFile(this.getUploadUrl(), formData).subscribe(retorno=>{
       console.log('Receiving...', retorno.data);
       this.queue++;
