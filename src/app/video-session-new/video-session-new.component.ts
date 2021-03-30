@@ -33,6 +33,7 @@ export class VideoSessionNewComponent implements OnInit {
     this.videoPlayer = el.nativeElement;
     this.videoPlayer.addEventListener("timeupdate", this.onTimeUpdate);
   }
+  durationProgress = '0%';
   continueVideo = false;
   menuTitle: string;
   fullscreen: boolean = false;
@@ -348,11 +349,35 @@ export class VideoSessionNewComponent implements OnInit {
     return false;
   }
 
+  next(){
+    let i = 0;
+    for(let video of this.lastVideos){
+      if(String(video.idVideo) === this.idVideo){
+        this.router.navigate(['/play/id/',this.lastVideos[i+1].idVideo]);
+      }
+      i++;
+    }
+  }
+
+  prev(){
+    let i = 0;
+    for(let video of this.lastVideos){
+      if(String(video.idVideo) === this.idVideo){
+        this.router.navigate(['/play/id/',this.lastVideos[i-1].idVideo]);
+      }
+      i++;
+    }
+  }
+
+  round(value){
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+  }
 
   onTimeUpdate() {
     if (this.videoPlayer && !this.seeking) {
       this.currentTime = this.videoPlayer.currentTime;
       this.duration = this.videoPlayer.duration;
+      this.durationProgress = this.round((this.currentTime/this.duration)*100)+'%';
     }
 
   }
