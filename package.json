@@ -1,6 +1,6 @@
 {
   "name": "videoviz-gui",
-  "version": "0.1.1-snapshot.0",
+  "version": "0.2.1-snapshot.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
