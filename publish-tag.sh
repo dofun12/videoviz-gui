@@ -1,5 +1,5 @@
 #!/bin/bash
-npm --no-git-tag-version version release
+npm --no-git-tag-version version minor
 PACKAGE_VERSION=$(node -p -e "require('./package.json').version")
 git tag -l "$PACKAGE_VERSION"
 git push
