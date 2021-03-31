@@ -16,6 +16,7 @@ import {VideoSessionNewComponent} from "./video-session-new/video-session-new.co
 import {CheckupComponent} from "./checkup/checkup.component";
 import {CheckLinksComponent} from "./check-links/check-links.component";
 import {VideoComponent} from "./video/video.component";
+import {VersionComponent} from "./version/version.component";
 
 const routes: Routes = [
   {path: 'play/id/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'checkup', component: CheckupComponent, canActivate: [AuthGuardService]},
   {path: 'check-links', component: CheckLinksComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
+  {path: 'version', component: VersionComponent, canActivate: [AuthGuardService]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   {path: 'locations', component: LocationsComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
