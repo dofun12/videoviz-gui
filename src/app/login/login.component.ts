@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.checkLogin().subscribe(retorno=>{
         if(retorno.success){
-          this.router.navigateByUrl("/home");
+          this.router.navigateByUrl("/videos/unrated-random");
         }
     });
   }
