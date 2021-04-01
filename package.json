@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng:wq build",
+    "build": "ng build --prod --output-path gui --base-href /gui/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
