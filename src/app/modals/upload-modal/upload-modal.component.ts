@@ -5,6 +5,7 @@ import {LocationJS} from "../../model/LocationJS";
 import {VideoJS} from "../../videoJS";
 import {environment} from "../../../environments/environment";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {UploadItem} from "../../uploadItem";
 
 @Component({
   selector: 'app-upload-modal',
@@ -16,6 +17,8 @@ export class UploadModalComponent implements OnInit {
   constructor(private videoService: VideoService,
               private locationService: LocationsService, public activeModal: NgbActiveModal) { }
 
+  @Output() onQueueAdd = new EventEmitter<string>();
+  @Output() onQueueRemove = new EventEmitter<string>();
   @Output() onUpload = new EventEmitter<string>();
 
   idVideo: number = null;
@@ -48,6 +51,12 @@ export class UploadModalComponent implements OnInit {
   upload() {
     this.runQueue(0);
     this.activeModal.close();
+    if(this.uploadedFiles && this.uploadedFiles.length == 0){
+      return;
+    }
+    for(let file of this.uploadedFiles){
+      this.onQueueAdd.emit(file.name);
+    }
   }
 
   fileChange(element) {
@@ -60,9 +69,12 @@ export class UploadModalComponent implements OnInit {
     let formData = new FormData();
     formData.append("file", file, file.name);
     formData.append("idLocation", '' + this.idLocation);
-    console.log(formData);
+
+
     this.videoService.uploadFile(this.getUploadUrl(), formData).subscribe(retorno=>{
-      console.log('Receiving...', retorno.data);
+      for(let received of retorno.data){
+        this.onQueueRemove.emit(received.title);
+      }
       this.queue++;
 
       this.onUpload.emit(retorno.data);
@@ -70,7 +82,6 @@ export class UploadModalComponent implements OnInit {
         this.runQueue(this.queue);
       }else{
         this.uploadedFiles = [];
-        console.log("This is the end");
       }
     }) , (error) =>{
       console.log("upload error");

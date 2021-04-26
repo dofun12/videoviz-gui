@@ -1,17 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from "../../environments/environment";
 import {VideoService} from "../video.service";
-import {VideoModel} from "../model/videoModel";
-import {JsonResponse} from "../model/JsonResponse";
-import {VideoSimple} from "../video-simple";
 import {Constants} from "../constants";
 import {VideoJS} from "../videoJS";
 import {LocationsService} from "../locations.service";
 import {LocationJS} from "../model/LocationJS";
-import {Observable,  ConnectableObservable} from "rxjs";
-import {concatAll} from "rxjs/operators";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {EditVideoModalComponent} from "../modals/edit-video-modal/edit-video-modal.component";
 import {ModalManagerService} from "../modal-manager.service";
 
 @Component({
@@ -28,7 +20,8 @@ export class UploadComponent implements OnInit {
   queue = 0;
   total = 0;
   videoModel = new VideoJS();
-  afterUploadList:VideoJS[] = [];
+  afterUploadList: VideoJS[] = [];
+  beforeUploadList: string[];
   uploadedFiles: Array<File>;
 
   constructor(
@@ -39,32 +32,46 @@ export class UploadComponent implements OnInit {
   }
 
 
-
   fileChange(element) {
     this.uploadedFiles = element.target.files;
     this.total = this.uploadedFiles.length;
   }
 
-  openUploadModal(){
+  openUploadModal() {
     const modalRef = this.modalManagerService.openUploadModal();
+    this.beforeUploadList = [];
+    modalRef.componentInstance.onQueueAdd.subscribe((uuidResponse: string) => {
+      console.log('Trying add.... ', uuidResponse);
+      const filtred = this.beforeUploadList.filter(value => (value === uuidResponse));
+      if(filtred && filtred.length > 0){
+        console.log('Rejected.... ', uuidResponse, filtred);
+        return;
+      }
+      console.log('Added.... ', uuidResponse);
+      this.beforeUploadList.push(uuidResponse);
+    });
     modalRef.componentInstance.onUpload.subscribe((videosJS: VideoJS[]) => {
       console.log('Opa saindo do forno', videosJS);
-      for(const v of videosJS){
+      for (const v of videosJS) {
         this.afterUploadList.push(v);
       }
     });
+    modalRef.componentInstance.onQueueRemove.subscribe((uuidResponse: string) => {
+      const filtred = this.beforeUploadList.filter( tmpUuid => tmpUuid !== uuidResponse);
+      this.beforeUploadList = filtred;
+    });
   }
 
-  openEditModal(idVideo: number){
+  openEditModal(idVideo: number) {
     this.modalManagerService.openVideoEditModal(idVideo);
   }
 
-  refresh(){
+  refresh() {
     console.log(this.afterUploadList);
   }
 
-  getImage(context: string,code: string) {
-    return Constants.getImageUrl(context,code);
+  getImage(context: string, code: string) {
+    return Constants.getImageUrl(context, code);
   }
 
 
