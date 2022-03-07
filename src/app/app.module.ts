@@ -34,6 +34,7 @@ import { CheckLinksComponent } from './check-links/check-links.component';
 import { VideoComponent } from './video/video.component';
 import { VideoModalComponent } from './modals/video-modal/video-modal.component';
 import { VersionComponent } from './version/version.component';
+import { SimpleListVideoComponent } from './simple-list-video/simple-list-video.component';
 
 
 
@@ -64,7 +65,8 @@ import { VersionComponent } from './version/version.component';
     CheckLinksComponent,
     VideoComponent,
     VideoModalComponent,
-    VersionComponent
+    VersionComponent,
+    SimpleListVideoComponent
   ],
     imports: [
         BrowserModule,

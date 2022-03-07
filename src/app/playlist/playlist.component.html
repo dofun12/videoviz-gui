@@ -15,7 +15,7 @@
     <h3 class="col-12">Playlists</h3>
   </div>
   <div class="row">
-    <div class="col-12" *ngFor="let playlist of lista">
+    <div class="col-12" (click)="abrirPlaylist(playlist)" *ngFor="let playlist of lista">
         {{playlist.name}}
     </div>
   </div>

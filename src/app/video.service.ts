@@ -75,6 +75,11 @@ export class VideoService {
 
   }
 
+  getListByPlaylist(idPlaylist) {
+    return this.http.get(this.url+"/playlist/"+idPlaylist);
+  }
+
+
   getInfo(idVideo: string) {
     return this.http.get(this.url+"/"+idVideo);
   }

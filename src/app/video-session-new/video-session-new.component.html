@@ -1,4 +1,5 @@
-<app-menubar mostrarResumo="true" [rating]="rating" [tags]="totalTags" [menuTitle]="menuTitle"></app-menubar>
+<app-menubar mostrarResumo="true" [rating]="rating" [tags]="totalTags" [menuTitle]="menuTitle"
+             xmlns="http://www.w3.org/1999/html"></app-menubar>
 <div style="overflow: hidden;">
   <div class="container-fluid">
     <div class="row">
@@ -87,28 +88,37 @@
         </div>
         <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('playlist')}">
           <div class="row">
-            <div class="col-12 tag-list-item" *ngFor="let playlist of playLista" (click)="onSelectPlaylist(playlist)">
-              <div class="col-8">{{playlist.name}}</div>
-              <div class="col-4"></div>
+            <div class="col-12">
+              Nova Playlist
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10">
+              <input [(ngModel)]="playlistName" class="form-control"/>
+            </div>
+            <div (click)="novaPlaylist()" class="col btn btn-info"><i class="fa fa-plus"></i></div>
+          </div>
+          <div class="row" *ngFor="let playlist of playLista">
+            <div class="col tag-list-item">{{playlist.name}}</div>
+            <div class="col-2 btn btn-info" (click)="onSelectPlaylist(playlist)"><i class="fa fa-plus"></i></div>
+          </div>
+          <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('config')}">
+            <div class="row" style="padding: 10px;">
+              <div class="col-8">
+                <label for="continue-video">Continue Video</label>
+              </div>
+              <div class="col-4">
+                <input type="checkbox" id="continue-video" [(ngModel)]="continueVideo"
+                       (change)="onChangeContinueVideo()"
+                       style="float: right;"/>
+              </div>
             </div>
           </div>
         </div>
-        <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('config')}">
-          <div class="row" style="padding: 10px;">
-            <div class="col-8">
-              <label for="continue-video">Continue Video</label>
-            </div>
-            <div class="col-4">
-              <input type="checkbox" id="continue-video" [(ngModel)]="continueVideo" (change)="onChangeContinueVideo()"
-                     style="float: right;"/>
-            </div>
-          </div>
-        </div>
+
       </div>
-
     </div>
-  </div>
 
-</div>
+  </div>
 
 

@@ -25,6 +25,7 @@ import {VideoPlaylist} from "../model/VideoPlaylist";
 })
 export class VideoSessionNewComponent implements OnInit {
   videoPlayer: HTMLVideoElement;
+  idPlaylist = null;
   @Input() videoSrc: string;
 
   @ViewChild('videoElement', { static: true })
@@ -35,6 +36,7 @@ export class VideoSessionNewComponent implements OnInit {
   }
   durationProgress = '0%';
   continueVideo = false;
+  sourceType = 'id';
   menuTitle: string;
   fullscreen: boolean = false;
   idVideo: string;
@@ -53,6 +55,7 @@ export class VideoSessionNewComponent implements OnInit {
   seeking: boolean;
   position: number;
   totalTags =  0;
+  playlistName: string;
   rating: number;
   autoplay: boolean = true;
   starsSelected: Star[] = [];
@@ -76,7 +79,14 @@ export class VideoSessionNewComponent implements OnInit {
     router.events.forEach((event) => {
       if (event instanceof ActivationEnd ) {
         const activation:ActivationEnd = event;
+        this.sourceType = activation.snapshot.params.source;
+        if(this.sourceType === 'playlist'){
+          this.idVideo = null;
+          this.idPlaylist = activation.snapshot.params.idVideo;
+        }
         this.idVideo = activation.snapshot.params.idVideo;
+
+
       } else
       if (event instanceof NavigationEnd ) {
         const eventEnd:NavigationEnd = event;
@@ -256,6 +266,20 @@ export class VideoSessionNewComponent implements OnInit {
     });
   }
 
+  novaPlaylist(){
+    let playlist = new Playlist();
+    playlist.name = this.playlistName;
+    this.playlistService.adicionar(playlist).subscribe((response)=>{
+      if(response.success){
+        const playlist = response.data;
+        this.onSelectPlaylist(playlist);
+        this.playlistName = "";
+        this.listarPlaylists();
+      }
+    });
+
+  }
+
   onSelectTab(tabname: string) {
     for (let tab of this.tabs) {
       tab.selected = false;
@@ -301,6 +325,13 @@ export class VideoSessionNewComponent implements OnInit {
 
     if (!lastPage || lastPage == 'null') {
       lastPage = '0';
+    }
+    if(this.sourceType === 'playlist'){
+      this.videoService.getListByPlaylist(this.idPlaylist).subscribe( response => {
+        this.lastVideos = response.data;
+        this.findPosition();
+      })
+
     }
     if(this.storage.get(StorageService.KEY_IS_BUSCA) == 'true'){
       this.videoService.lastBusca().subscribe((response: JsonResponse) =>{

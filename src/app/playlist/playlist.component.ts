@@ -17,7 +17,8 @@ export class PlaylistComponent implements OnInit {
   lista: Playlist[];
   playlistName: string;
 
-  constructor(private playlistService: PlaylistService) {
+  constructor(private playlistService: PlaylistService, private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -32,6 +33,10 @@ export class PlaylistComponent implements OnInit {
           console.log('foi',this.lista);
         }
     });
+  }
+
+  abrirPlaylist(playlist){
+    this.router.navigate(['/playlist/'+playlist.idPlaylist]);
   }
 
   save(){

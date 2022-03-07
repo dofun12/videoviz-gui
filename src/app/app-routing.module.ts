@@ -17,14 +17,16 @@ import {CheckupComponent} from "./checkup/checkup.component";
 import {CheckLinksComponent} from "./check-links/check-links.component";
 import {VideoComponent} from "./video/video.component";
 import {VersionComponent} from "./version/version.component";
+import {PlaylistVideosComponent} from "./playlist-videos/playlist-videos.component";
 
 const routes: Routes = [
-  {path: 'play/id/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
+  {path: 'play/:source/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
   {path: 'videos', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'video/:key/:value', component: VideoComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type/:page', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuardService]},
+  {path: 'playlist/:idPlaylist', component: PlaylistVideosComponent, canActivate: [AuthGuardService]},
   {path: 'busca', component: BuscaComponent, canActivate: [AuthGuardService]},
   {path: 'busca-avancada', component: BuscaAvancadaComponent, canActivate: [AuthGuardService]},
   {path: 'upload', component: UploadComponent, canActivate: [AuthGuardService]},
