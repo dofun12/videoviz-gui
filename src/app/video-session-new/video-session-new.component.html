@@ -81,8 +81,7 @@
         </div>
         <div class="container-fluid default-container" [ngClass]="{'hide':!isTabSelected('fila')}">
           <ul class="nobullet fila"
-              *ngFor="let video of lastVideos" (click)="play(video.idVideo+'')"
-              [routerLink]="['/play/id/',video.idVideo]">
+              *ngFor="let video of lastVideos" (click)="play(video.idVideo+'')" >
             <li [ngClass]="{'selected':isSelected(video.idVideo)}">{{video.idVideo}} - {{video.title}}</li>
           </ul>
         </div>

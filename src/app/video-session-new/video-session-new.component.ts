@@ -37,6 +37,7 @@ export class VideoSessionNewComponent implements OnInit {
   durationProgress = '0%';
   continueVideo = false;
   sourceType = 'id';
+  sourceId = 0;
   menuTitle: string;
   fullscreen: boolean = false;
   idVideo: string;
@@ -80,10 +81,7 @@ export class VideoSessionNewComponent implements OnInit {
       if (event instanceof ActivationEnd ) {
         const activation:ActivationEnd = event;
         this.sourceType = activation.snapshot.params.source;
-        if(this.sourceType === 'playlist'){
-          this.idVideo = null;
-          this.idPlaylist = activation.snapshot.params.idVideo;
-        }
+        this.sourceId = activation.snapshot.params.sourceId;
         this.idVideo = activation.snapshot.params.idVideo;
 
 
@@ -156,6 +154,14 @@ export class VideoSessionNewComponent implements OnInit {
     this.currentTime = 0;
     this.storage.clear();
     this.started = true;
+    this.router.navigate([this.getLastSource()+'/'+idVideo]);
+  }
+
+  getLastSource(): string{
+    if(this.sourceType && this.sourceId){
+      return this.sourceType + '/' + this.sourceId;
+    }
+    return this.sourceType;
   }
 
   getListVideoTags(idVideo: string) {
@@ -327,7 +333,7 @@ export class VideoSessionNewComponent implements OnInit {
       lastPage = '0';
     }
     if(this.sourceType === 'playlist'){
-      this.videoService.getListByPlaylist(this.idPlaylist).subscribe( response => {
+      this.videoService.getListByPlaylist(this.sourceId).subscribe( response => {
         this.lastVideos = response.data;
         this.findPosition();
       })

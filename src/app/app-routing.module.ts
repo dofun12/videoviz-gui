@@ -21,6 +21,7 @@ import {PlaylistVideosComponent} from "./playlist-videos/playlist-videos.compone
 
 const routes: Routes = [
   {path: 'play/:source/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
+  {path: 'play/:source/:sourceId/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
   {path: 'videos', component: VideoListComponent, canActivate: [AuthGuardService]},
   {path: 'video/:key/:value', component: VideoComponent, canActivate: [AuthGuardService]},
   {path: 'videos/:type', component: VideoListComponent, canActivate: [AuthGuardService]},

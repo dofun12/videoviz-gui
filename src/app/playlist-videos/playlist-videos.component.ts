@@ -15,6 +15,7 @@ import {PlaylistService} from "../playlist.service";
 export class PlaylistVideosComponent implements OnInit {
   idPlaylist = null;
   videoList = [];
+  sourceUrl = null;
   constructor(private playlistService: PlaylistService,private videoService: VideoService,private route: ActivatedRoute,private router: Router){
     router.events.forEach((event) => {
       if (event instanceof ActivationEnd ) {
@@ -35,6 +36,7 @@ export class PlaylistVideosComponent implements OnInit {
   iniciar(){
     console.log(this.idPlaylist);
     if(this.idPlaylist){
+      this.sourceUrl = '/play/playlist/'+this.idPlaylist;
       this.videoService.getListByPlaylist(this.idPlaylist).subscribe( response=>  {
         console.log(response);
         this.videoList = response.data;

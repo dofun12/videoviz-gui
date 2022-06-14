@@ -5,19 +5,19 @@ import * as npm from '../../package.json';
 
 export const environment = {
   production: false,
-  remoteUrl : "http://localhost:8080",
-  remoteVideoUrl: "http://localhost:8080",
-  remoteImageUrl: "http://localhost:8080",
-  authUrl:  "http://localhost:8080/auth",
-  apiUrl:  "http://localhost:8080/api",
-  apiUrlDireto:  "http://localhost:8080/api",
+  remoteUrl : "http://localhost:7777",
+  remoteVideoUrl: "http://localhost:7777",
+  remoteImageUrl: "http://localhost:7777",
+  authUrl:  "http://localhost:7777/auth",
+  apiUrl:  "http://localhost:7777/api",
+  apiUrlDireto:  "http://localhost:7777/api",
   version: npm.version
   /**
-  remoteUrl : "http://192.168.15.102:8080",
-  remoteVideoUrl: "http://192.168.15.102:8080",
-  remoteImageUrl: "http://192.168.15.102:8080",
-  apiUrl:  "http://192.168.15.102:8080/api",
-  apiUrlDireto:  "http://192.168.15.102:8080/api"
+  remoteUrl : "http://192.168.15.102:7777",
+  remoteVideoUrl: "http://192.168.15.102:7777",
+  remoteImageUrl: "http://192.168.15.102:7777",
+  apiUrl:  "http://192.168.15.102:7777/api",
+  apiUrlDireto:  "http://192.168.15.102:7777/api"
   **/
 
 };

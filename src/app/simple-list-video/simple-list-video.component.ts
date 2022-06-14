@@ -15,6 +15,7 @@ import {VSession} from "../model/VSession";
 })
 export class SimpleListVideoComponent implements OnInit {
   @Input() playlistName = 'Sem nome';
+  @Input() sourceUrl = '/play/id';
   @Input() mylistVideo: VideoSimple[] = [];
   listVideo: VideoSimple[] = [];
   type: string = null;
@@ -43,7 +44,7 @@ export class SimpleListVideoComponent implements OnInit {
     vsession.idVideo = idVideo;
     vsession.isBusca = false;
     this.storage.store(vsession);
-    this.router.navigate(['/play/id/'+idVideo]);
+    this.router.navigate([this.sourceUrl+'/'+idVideo]);
   }
 
   initType(){
