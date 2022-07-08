@@ -3,14 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 import * as npm from '../../package.json';
 
+let baseUrl = "http://192.168.15.102:9000";
+const baseUrlLocal = "http://localhost:8080";
+const testLocal = false;
+baseUrl = (testLocal?baseUrlLocal:baseUrl);
 export const environment = {
   production: false,
-  remoteUrl : "http://localhost:7777",
-  remoteVideoUrl: "http://localhost:7777",
-  remoteImageUrl: "http://localhost:7777",
-  authUrl:  "http://localhost:7777/auth",
-  apiUrl:  "http://localhost:7777/api",
-  apiUrlDireto:  "http://localhost:7777/api",
+  remoteUrl : `${baseUrl}`,
+  remoteVideoUrl: `${baseUrl}`,
+  remoteImageUrl: `${baseUrl}`,
+  authUrl:  `${baseUrl}/auth`,
+  apiUrl:  `${baseUrl}/api`,
+  apiUrlDireto:  `${baseUrl}/api`,
   version: npm.version
   /**
   remoteUrl : "http://192.168.15.102:7777",

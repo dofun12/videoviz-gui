@@ -11,16 +11,20 @@
   </div>
   <div class="row form-group">
     <div class="col-12">
+      <div class="col-4">Condição</div>
       <select class="form-control" [(ngModel)]="tituloFilter.criterio">
         <option *ngFor="let cond of getCriterios()" value="{{cond.value}}">{{cond.label}}</option>
       </select>
     </div>
     <div class="col-12">
+      <div class="col-4">Condição</div>
       <select class="form-control" [(ngModel)]="tituloFilter.condicao">
         <option *ngFor="let cond of getCondicaoList('texto')" value="{{cond.value}}">{{cond.label}}</option>
       </select>
     </div>
-    <div class="col-12"><input type="text" class="form-control" [(ngModel)]="tituloFilter.campo" value="titulo" readonly>
+    <div class="col-12">
+      <div class="col-4">Condição</div>
+      <input type="text" class="form-control" [(ngModel)]="tituloFilter.campo" value="titulo" readonly>
     </div>
     <div class="col-12">
       <input type="text" class="form-control" [(ngModel)]="tituloFilter.valor"/>

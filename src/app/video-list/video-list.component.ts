@@ -8,6 +8,7 @@ import {StorageService} from "../storage.service";
 import {VSession} from "../model/VSession";
 import {environment} from "../../environments/environment";
 import {Constants} from "../constants";
+import {Paginator} from "../model/paginator";
 
 @Component({
   selector: 'app-video-list',
@@ -19,6 +20,15 @@ export class VideoListComponent implements OnInit {
   type: string = null;
   page: string = '0';
   imageUrl: string;
+  paginationBaseUrl: string;
+  paginator: Paginator[] = [];
+
+  createPaginatorElem(){
+    this.paginator = [];
+    for(let i=1; i<=10;i++){
+      this.paginator.push({"page-number": i, "href": this.paginationBaseUrl+i})
+    }
+  }
 
   constructor(private videoService: VideoService, private route: ActivatedRoute,
               private router: Router,private session:Session,private storage: StorageService) {
@@ -28,7 +38,9 @@ export class VideoListComponent implements OnInit {
       if(theType && this.type!= theType){
         console.log("INFO",theType);
         this.type = this.route.snapshot.paramMap.get('type');
+        this.paginationBaseUrl = `/videos/${theType}/`;
         this.initType();
+        this.createPaginatorElem();
      }
 
     });
