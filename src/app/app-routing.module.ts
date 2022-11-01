@@ -18,6 +18,7 @@ import {CheckLinksComponent} from "./check-links/check-links.component";
 import {VideoComponent} from "./video/video.component";
 import {VersionComponent} from "./version/version.component";
 import {PlaylistVideosComponent} from "./playlist-videos/playlist-videos.component";
+import {BuscaAvancadaNovoComponent} from "./busca-avancada-novo/busca-avancada-novo.component";
 
 const routes: Routes = [
   {path: 'play/:source/:idVideo', component: VideoSessionNewComponent, canActivate: [AuthGuardService]},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'playlist/:idPlaylist', component: PlaylistVideosComponent, canActivate: [AuthGuardService]},
   {path: 'busca', component: BuscaComponent, canActivate: [AuthGuardService]},
   {path: 'busca-avancada', component: BuscaAvancadaComponent, canActivate: [AuthGuardService]},
+  {path: 'busca-avancada-novo', component: BuscaAvancadaNovoComponent, canActivate: [AuthGuardService]},
   {path: 'upload', component: UploadComponent, canActivate: [AuthGuardService]},
   {path: 'fila', component: FilaDownloadComponent, canActivate: [AuthGuardService]},
   {path: 'info', component: InfoComponent, canActivate: [AuthGuardService]},

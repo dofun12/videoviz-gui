@@ -35,6 +35,7 @@ import { VideoComponent } from './video/video.component';
 import { VideoModalComponent } from './modals/video-modal/video-modal.component';
 import { VersionComponent } from './version/version.component';
 import { SimpleListVideoComponent } from './simple-list-video/simple-list-video.component';
+import { BuscaAvancadaNovoComponent } from './busca-avancada-novo/busca-avancada-novo.component';
 
 
 
@@ -66,7 +67,8 @@ import { SimpleListVideoComponent } from './simple-list-video/simple-list-video.
     VideoComponent,
     VideoModalComponent,
     VersionComponent,
-    SimpleListVideoComponent
+    SimpleListVideoComponent,
+    BuscaAvancadaNovoComponent
   ],
     imports: [
         BrowserModule,
