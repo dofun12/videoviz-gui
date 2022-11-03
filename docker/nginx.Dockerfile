@@ -1,5 +1,9 @@
 FROM nginx
-RUN mkdir -p /var/www/html
-COPY gui /var/www/html/gui
+RUN mkdir -p /html
 COPY docker/nginx.conf /etc/nginx/nginx.conf
-RUN chmod -R 777 /var/www/html
+USER root
+
+RUN chmod -R 777 /html
+RUN chown -R www-data:www-data /html
+COPY gui /html/gui
+
