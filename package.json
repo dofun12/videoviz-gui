@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "update-version": "node get-version.js > version.txt",
-    "build": "npm run update-version && ng build --prod --output-path gui --base-href /gui/",
+    "update-version": "node get-version.js",
+    "build": "ng build --prod --output-path gui --base-href /gui/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
