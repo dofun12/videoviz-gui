@@ -1,4 +1,5 @@
 FROM nginx
-COPY gui /usr/share/nginx/html/gui
+RUN mkdir /var/www/html
+COPY gui /var/www/html/gui
 COPY docker/nginx.conf /etc/nginx/nginx.conf
-RUN chmod -R 777 /usr/share/nginx/html/gui
+RUN chmod -R 777 /var/www/html
